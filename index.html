@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Operação Cativa — Neogás RS</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050813;--bg2:#070b1c;--surface:#0d1530;--surface2:#131d40;--surface3:#1a2550;
+  --border:#1c2a5a;--border2:#2c3d7a;--line:#16224a;
+  --azul-deep:#0a1a8c;--azul:#1e40ff;--azul-br:#4d7aff;--azul-glow:#5b8cff;
+  --text:#eef2ff;--text2:#b8c4e8;--muted:#6678a8;--muted2:#46557e;--branco:#ffffff;
+  --verde:#16f08a;--laranja:#ff9a4d;--vermelho:#ff4767;--amarelo:#ffce4d;--roxo:#b88aff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;min-height:100vh;padding:32px 24px 80px;position:relative;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -15%,rgba(30,64,255,.22) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 100% 100%,rgba(10,26,140,.18) 0%,transparent 60%);pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(40,70,180,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(40,70,180,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse 100% 80% at 50% 30%,black 40%,transparent 90%);pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;}
+
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;gap:24px;flex-wrap:wrap;padding-bottom:26px;border-bottom:1px solid var(--border);position:relative;}
+.header::after{content:'';position:absolute;bottom:-1px;left:0;width:120px;height:2px;background:linear-gradient(90deg,var(--azul-br),transparent);}
+.logo-area{display:flex;align-items:center;gap:18px;}
+.brand-mark{width:4px;height:52px;border-radius:4px;background:linear-gradient(180deg,var(--azul-glow),var(--azul-deep));box-shadow:0 0 16px rgba(91,140,255,.5);}
+.op-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--azul-br);margin-bottom:7px;display:flex;align-items:center;gap:9px;}
+.op-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--verde);box-shadow:0 0 10px var(--verde),0 0 4px var(--verde);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(.85);}}
+h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(26px,4.2vw,42px);font-weight:800;letter-spacing:.015em;text-transform:uppercase;color:var(--branco);line-height:.95;}
+h1 .sep{color:var(--azul-br);margin:0 4px;font-weight:600;}
+h1 .rs{color:var(--azul-br);}
+.header-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.live-clock{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;}
+.live-clock b{color:var(--text2);font-weight:500;}
+.pills{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
+.pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:5px 13px;border-radius:100px;border:1px solid;letter-spacing:.04em;display:inline-flex;align-items:center;gap:6px;}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9;}
+.pill-azul{color:#8fb0ff;border-color:#28387e;background:rgba(20,40,140,.25);}
+.pill-verde{color:var(--verde);border-color:#0c6e3e;background:rgba(10,154,85,.12);}
+.pill-laranja{color:var(--laranja);border-color:#6e3e16;background:rgba(196,102,24,.12);}
+.pill-verm{color:var(--vermelho);border-color:#6e1c2e;background:rgba(255,71,103,.1);}
+.pill-roxo{color:var(--roxo);border-color:#5a3a8a;background:rgba(184,138,255,.1);}
+
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:34px 0 14px;display:flex;align-items:center;gap:12px;}
+.sec-label .ico{display:inline-flex;width:18px;height:18px;align-items:center;justify-content:center;border-radius:5px;background:var(--surface2);border:1px solid var(--border);color:var(--azul-br);font-size:10px;}
+.sec-label .stamp{color:var(--azul-br);font-weight:600;background:rgba(30,64,255,.1);border:1px solid #28387e;padding:2px 9px;border-radius:5px;letter-spacing:.08em;}
+.sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;}
+.card{background:linear-gradient(165deg,var(--surface2) 0%,var(--surface) 100%);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;position:relative;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,140,255,.4),transparent);opacity:0;transition:opacity .18s;}
+.card:hover{transform:translateY(-2px);border-color:var(--border2);box-shadow:0 8px 32px rgba(8,16,48,.6),0 0 0 1px rgba(40,56,126,.3);}
+.card:hover::before{opacity:1;}
+.card-head{background:linear-gradient(180deg,var(--surface3),var(--surface2));border-bottom:1px solid var(--border);padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.head-id{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.frota{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.placa{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--branco);letter-spacing:.06em;line-height:1;}
+.comb-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:.08em;white-space:nowrap;text-transform:uppercase;}
+.gnv{background:rgba(22,240,138,.1);color:var(--verde);border:1px solid rgba(22,240,138,.3);}
+.diesel{background:rgba(255,154,77,.1);color:var(--laranja);border:1px solid rgba(255,154,77,.3);}
+.spot{background:rgba(255,120,51,.1);color:#ff7733;border:1px solid rgba(255,120,51,.3);}
+.card-body{padding:14px 16px 15px;display:flex;flex-direction:column;gap:10px;}
+
+.status{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;padding:7px 13px;border-radius:8px;line-height:1.3;}
+.status .pulse{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.s-deslocamento,.s-cliente{background:rgba(30,64,255,.12);color:var(--azul-glow);border:1px solid rgba(77,122,255,.3);}
+.s-deslocamento .pulse,.s-cliente .pulse{background:var(--azul-glow);box-shadow:0 0 8px var(--azul-glow);animation:pulse 1.6s infinite;}
+.s-cheio{background:rgba(22,240,138,.1);color:var(--verde);border:1px solid rgba(22,240,138,.3);}
+.s-cheio .pulse{background:var(--verde);box-shadow:0 0 8px var(--verde);animation:pulse 1.6s infinite;}
+.s-vazio{background:rgba(255,206,77,.1);color:var(--amarelo);border:1px solid rgba(255,206,77,.3);}
+.s-vazio .pulse{background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:pulse 2.2s infinite;}
+.s-parado{background:rgba(255,206,77,.08);color:var(--amarelo);border:1px solid rgba(255,206,77,.22);}
+.s-parado .pulse{background:var(--amarelo);}
+.s-tubarao{background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);}
+.s-tubarao .pulse{background:var(--roxo);box-shadow:0 0 8px var(--roxo);animation:pulse 2.2s infinite;}
+
+.info-rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+.irow{display:grid;grid-template-columns:78px 1fr;align-items:center;background:var(--surface);padding:7px 12px;gap:8px;min-height:32px;}
+.irow:nth-child(even){background:rgba(30,50,100,.2);}
+.irow .lbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;}
+.irow .v{font-size:12.5px;color:var(--text2);line-height:1.35;}
+.irow .v.mono{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--azul-glow);font-weight:600;letter-spacing:.03em;}
+.irow .v.prev{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--verde);font-weight:600;}
+.irow .v.prev.none{color:var(--muted);font-weight:400;}
+.irow.mot-row{grid-template-columns:78px 1fr auto;}
+.irow .v.mot{color:var(--text);font-weight:400;}
+.irow .turno-chip{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--azul-br);background:rgba(30,64,255,.1);border:1px solid rgba(77,122,255,.25);padding:2px 8px;border-radius:5px;white-space:nowrap;font-weight:500;}
+.rota{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.rp{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:5px;letter-spacing:.02em;}
+.rp-o{background:rgba(30,64,255,.1);color:var(--azul-glow);border:1px solid rgba(77,122,255,.25);}
+.rp-d{background:rgba(22,240,138,.08);color:var(--verde);border:1px solid rgba(22,240,138,.25);}
+.rp-arr{color:var(--muted2);font-size:11px;}
+.obs{display:flex;gap:8px;align-items:flex-start;background:rgba(255,154,77,.08);border:1px solid rgba(255,154,77,.25);border-radius:8px;padding:8px 11px;font-size:11.5px;color:var(--laranja);line-height:1.45;}
+
+.carretas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;}
+.ccard{background:linear-gradient(165deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.ccard-head{padding:12px 15px;display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--border);}
+.ccard-head .ci{font-size:14px;}
+.ccard-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.ccard-count{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;opacity:.7;}
+.chips{padding:13px 15px;display:flex;flex-wrap:wrap;gap:7px;}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;padding:4px 11px;border-radius:6px;letter-spacing:.04em;}
+.chip-cheia{background:rgba(22,240,138,.1);color:var(--verde);border:1px solid rgba(22,240,138,.3);}
+.chip-vazia{background:rgba(255,206,77,.1);color:var(--amarelo);border:1px solid rgba(255,206,77,.3);}
+.chip-nada{color:var(--vermelho);font-size:12px;font-family:'Barlow',sans-serif;padding:5px 0;opacity:.85;}
+.ccard-obs{padding:12px 15px;font-size:11.5px;color:var(--laranja);line-height:1.75;border-top:1px solid var(--border);}
+.ccard-obs b{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--laranja);}
+
+.escala-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px;}
+.esc-card{background:linear-gradient(165deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.esc-head{background:linear-gradient(135deg,var(--azul-deep),var(--azul));color:var(--branco);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.08em;text-align:center;padding:9px;text-transform:uppercase;}
+.esc-body{padding:11px 13px;display:flex;flex-direction:column;gap:7px;}
+.esc-cavalo{border-bottom:1px solid var(--line);padding-bottom:7px;}
+.esc-cavalo:last-of-type{border-bottom:none;}
+.esc-frota{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:var(--azul-br);margin-bottom:4px;letter-spacing:.04em;}
+.esc-turnos{display:flex;flex-direction:column;gap:3px;}
+.esc-turno{display:flex;align-items:center;gap:7px;font-size:11.5px;}
+.esc-sun{color:var(--amarelo);font-size:10px;width:12px;}
+.esc-moon{color:var(--azul-br);font-size:10px;width:12px;}
+.esc-mot{flex:1;color:var(--text2);}
+.esc-hora{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);}
+.esc-folga{background:rgba(255,71,103,.07);border:1px solid rgba(255,71,103,.22);border-radius:9px;padding:9px;display:flex;gap:10px;margin-top:4px;}
+.esc-folga-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--vermelho);display:flex;align-items:center;letter-spacing:.06em;}
+.esc-folga-list{flex:1;display:flex;flex-direction:column;gap:3px;}
+.esc-folga-item{display:flex;justify-content:space-between;font-size:10.5px;color:var(--text2);}
+.esc-folga-turno{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);}
+.esc-plantao{background:rgba(30,64,255,.08);border:1px solid rgba(77,122,255,.22);border-radius:9px;padding:9px;display:flex;gap:10px;}
+.esc-plantao-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--azul-br);display:flex;align-items:center;letter-spacing:.06em;}
+.esc-plantao-list{flex:1;display:flex;flex-direction:column;gap:3px;}
+.esc-plantao-item{font-size:10.5px;color:var(--text2);}
+.esc-spot{background:rgba(184,138,255,.08);border:1px solid rgba(184,138,255,.22);border-radius:9px;padding:9px;display:flex;gap:10px;}
+.esc-spot-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--roxo);display:flex;align-items:center;letter-spacing:.06em;}
+
+.footer{margin-top:44px;padding-top:22px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-txt{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--muted2);letter-spacing:.12em;text-transform:uppercase;}
+.footer-txt b{color:var(--muted);font-weight:500;}
+
+@media(max-width:600px){
+  body{padding:24px 16px 60px;}
+  .grid,.carretas-grid,.escala-grid{grid-template-columns:1fr;}
+  .header{flex-direction:column;align-items:flex-start;}
+  .header-right{align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="logo-area">
+      <div class="brand-mark"></div>
+      <div>
+        <div class="op-tag"><span class="dot"></span>Operação Cativa · Monitoramento ao vivo</div>
+        <h1>Cavalinho <span class="sep">·</span> Neogás <span class="rs">RS</span></h1>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="pills">
+        <span class="pill pill-azul">5 cavalos</span>
+        <span class="pill pill-verde">2 carregados → cliente</span>
+        <span class="pill pill-laranja">3 vazios → aterro / Valentina</span>
+      </div>
+      <div class="live-clock" id="clock">—</div>
+    </div>
+  </div>
+
+  <div class="sec-label"><span class="ico">▦</span>Status dos Cavalos <span class="stamp">18/08 · 18h00</span></div>
+                  <div class="grid">
+
+    <div class="card">
+      <div class="card-head"><div class="head-id"><span class="frota">Frota 15242</span><span class="placa">UEG4D20</span></div><span class="comb-badge gnv">GNV</span></div>
+      <div class="card-body">
+        <div class="status s-vazio"><span class="pulse"></span>Vazio → Aterro SL (Braskem x SL)</div>
+        <div class="info-rows">
+          <div class="irow"><span class="lbl">Carreta</span><span class="v mono">RKA6B63</span></div>
+          <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">Braskem</span><span class="rp-arr">→</span><span class="rp rp-d">Aterro SL</span></div></div>
+          <div class="irow mot-row"><span class="lbl">Motorista</span><span class="v mot">Alexandre Ceretta</span><span class="turno-chip">06h→18h</span></div>
+          <div class="irow"><span class="lbl">Previsão</span><span class="v prev">18h30</span></div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="head-id"><span class="frota">Frota 15222</span><span class="placa">UDN5E00</span></div><span class="comb-badge gnv">GNV</span></div>
+      <div class="card-body">
+        <div class="status s-cheio"><span class="pulse"></span>Carregado → Cliente Braskem (Valentina x Braskem)</div>
+        <div class="info-rows">
+          <div class="irow"><span class="lbl">Carreta</span><span class="v mono">UBW7E09</span></div>
+          <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">Valentina</span><span class="rp-arr">→</span><span class="rp rp-d">Braskem</span></div></div>
+          <div class="irow mot-row"><span class="lbl">Motorista</span><span class="v mot">Tiago Fraga</span><span class="turno-chip">17h→05h</span></div>
+          <div class="irow"><span class="lbl">Previsão</span><span class="v prev">18h20</span></div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="head-id"><span class="frota">Frota 15252</span><span class="placa">UFF3B79</span></div><span class="comb-badge gnv">GNV</span></div>
+      <div class="card-body">
+        <div class="status s-vazio"><span class="pulse"></span>Vazio → Aterro ML (GM x Valentina)</div>
+        <div class="info-rows">
+          <div class="irow"><span class="lbl">Carreta</span><span class="v mono">TRF8J51</span></div>
+          <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">Valentina</span><span class="rp-arr">→</span><span class="rp rp-d">Minas do Leão</span></div></div>
+          <div class="irow mot-row"><span class="lbl">Motorista</span><span class="v mot">André das Graças</span><span class="turno-chip">17h→05h</span></div>
+          <div class="irow"><span class="lbl">Previsão</span><span class="v prev">20h00</span></div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="head-id"><span class="frota">Frota 15212</span><span class="placa">QSS4F19</span></div><span class="comb-badge gnv">GNV</span></div>
+      <div class="card-body">
+        <div class="status s-cheio"><span class="pulse"></span>Carregado → Valentina (ML x Valentina)</div>
+        <div class="info-rows">
+          <div class="irow"><span class="lbl">Carreta</span><span class="v mono">JDD4E67</span></div>
+          <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">Minas do Leão</span><span class="rp-arr">→</span><span class="rp rp-d">Valentina</span></div></div>
+          <div class="irow mot-row"><span class="lbl">Motorista</span><span class="v mot">Samuel Rocha</span><span class="turno-chip">07h→19h</span></div>
+          <div class="irow"><span class="lbl">Previsão</span><span class="v prev">18h20</span></div>
+        </div>
+        <div class="obs">Carreta cheia GM</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="head-id"><span class="frota">Frota 11442</span><span class="placa">BYJ0H82</span></div><span class="comb-badge diesel">Diesel</span></div>
+      <div class="card-body">
+        <div class="status s-vazio"><span class="pulse"></span>Vazio → Valentina (GM x Valentina)</div>
+        <div class="info-rows">
+          <div class="irow"><span class="lbl">Carreta</span><span class="v mono">UBQ1J84</span></div>
+          <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">GM Gravataí</span><span class="rp-arr">→</span><span class="rp rp-d">Valentina</span></div></div>
+          <div class="irow mot-row"><span class="lbl">Motorista</span><span class="v mot">Dalvan Faguaga</span><span class="turno-chip">07h→19h</span></div>
+          <div class="irow"><span class="lbl">Previsão</span><span class="v prev">18h00</span></div>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sec-label"><span class="ico">▤</span>Carretas</div>
+              <div class="carretas-grid">
+    <div class="ccard">
+      <div class="ccard-head" style="background:linear-gradient(180deg,rgba(30,200,120,.1),transparent);"><span class="ci">🅿</span><span class="ccard-title" style="color:var(--verde);">Valentina</span></div>
+      <div style="padding:12px 15px;display:flex;flex-direction:column;gap:8px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--verde);font-weight:600;">Cheias · 04</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+          <span class="chip chip-cheia">TRE5H92</span>
+          <span class="chip chip-cheia">UBI9F91</span>
+          <span class="chip chip-cheia">JCX8A44</span>
+          <span class="chip chip-cheia">JDD4E68</span>
+        </div>
+        <div style="height:.5px;background:var(--line);"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amarelo);font-weight:600;margin-top:2px;">Vazias · 01</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="chip chip-vazia">TRF3G33</span>
+        </div>
+      </div>
+    </div>
+    <div class="ccard">
+      <div class="ccard-head" style="background:linear-gradient(180deg,rgba(30,64,255,.12),transparent);"><span class="ci">🏭</span><span class="ccard-title" style="color:var(--azul-br);">Portaria 4 GM</span></div>
+      <div style="padding:12px 15px;display:flex;flex-direction:column;gap:8px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--azul-glow);font-weight:600;">Cheias · 03</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+          <span class="chip" style="background:rgba(77,122,255,.1);color:var(--azul-glow);border:1px solid rgba(77,122,255,.3);">TRF2G67</span>
+          <span class="chip" style="background:rgba(77,122,255,.1);color:var(--azul-glow);border:1px solid rgba(77,122,255,.3);">TAQ5D95</span>
+          <span class="chip" style="background:rgba(77,122,255,.1);color:var(--azul-glow);border:1px solid rgba(77,122,255,.3);">UBI9F93</span>
+        </div>
+        <div style="height:.5px;background:var(--line);"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--amarelo);font-weight:600;margin-top:2px;">Vazias · 00</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span style="color:var(--muted);font-size:11px;">Nenhuma carreta vazia</span>
+        </div>
+      </div>
+    </div>
+    <div class="ccard">
+      <div class="ccard-head" style="background:linear-gradient(180deg,rgba(184,138,255,.1),transparent);"><span class="ci">🔧</span><span class="ccard-title" style="color:var(--roxo);">Bunker GM</span><span class="ccard-count" style="color:var(--roxo);">03</span></div>
+      <div class="chips">
+        <span class="chip" style="background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);">JCM2E71</span>
+        <span class="chip" style="background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);">TRF1F45</span>
+        <span class="chip" style="background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);">UBW7E07</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-label"><span class="ico">▥</span>Escala de Motoristas <span class="stamp">17/08 → 19/08</span></div>
+  <div class="escala-grid">
+    <div class="esc-card">
+      <div class="esc-head">Escala · 17/08/26</div>
+      <div class="esc-body">
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--laranja);">15242 · UEG4D20</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Alexandre Ceretta</span><span class="esc-hora">06–18h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Alberto Rodrigues Cerveira</span><span class="esc-hora">18–06h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15222 · UDN5E00</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Paulo Rogério F. da Guia</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Tiago Fraga da Silva</span><span class="esc-hora">17–05h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15252 · UFF3B79</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leonardo de Souza Branco</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">André das Graças</span><span class="esc-hora">17–05h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15212 · QSS4F19</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Samuel Rocha dos Santos</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Denis Cezar Azambuja</span><span class="esc-hora">19–07h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">11442 · BYJ0H82</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Dalvan Melos Faguaga</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Fábio Catto</span><span class="esc-hora">19–07h</span></div></div></div>
+        <div class="esc-folga"><div class="esc-folga-label">FOLGA</div><div class="esc-folga-list"><div class="esc-folga-item"><span>Leandro de Carvalho</span><span class="esc-folga-turno">Dia</span></div></div></div>
+        <div class="esc-plantao"><div class="esc-plantao-label">PLANTÃO D</div><div class="esc-plantao-list"><div class="esc-plantao-item">Marcos Góis · 07:00–16:00</div><div class="esc-plantao-item">Anderson Christiano · 07:00–16:00</div></div></div><div class="obs" style="margin-top:6px;background:rgba(255,154,77,.08);border-color:rgba(255,154,77,.25);color:var(--laranja);">🔶 15242 UEG4D20 — Troca de turno em São Leopoldo</div>
+      </div>
+    </div>
+    <div class="esc-card">
+      <div class="esc-head">Escala · 18/08/26</div>
+      <div class="esc-body">
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--laranja);">15242 · UEG4D20</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Alexandre Ceretta</span><span class="esc-hora">06–18h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Anderson Christiano</span><span class="esc-hora">18–06h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15222 · UDN5E00</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leandro de Carvalho</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Tiago Fraga da Silva</span><span class="esc-hora">17–05h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15252 · UFF3B79</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leonardo de Souza Branco</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">André das Graças</span><span class="esc-hora">17–05h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15212 · QSS4F19</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Samuel Rocha dos Santos</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Denis Cezar Azambuja</span><span class="esc-hora">19–07h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">11442 · BYJ0H82</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Dalvan Melos Faguaga</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Marcos Góis</span><span class="esc-hora">19–07h</span></div></div></div>
+        <div class="esc-folga"><div class="esc-folga-label">FOLGA</div><div class="esc-folga-list"><div class="esc-folga-item"><span>Paulo Rogério F. da Guia</span><span class="esc-folga-turno">Dia</span></div><div class="esc-folga-item"><span>Fábio Catto</span><span class="esc-folga-turno">Noite</span></div><div class="esc-folga-item"><span>Alberto Rodrigues Cerveira</span><span class="esc-folga-turno">Noite</span></div></div></div>
+        <div class="obs" style="margin-top:6px;background:rgba(255,154,77,.08);border-color:rgba(255,154,77,.25);color:var(--laranja);">🔶 15242 UEG4D20 — Troca de turno em São Leopoldo</div>
+      </div>
+    </div>
+    <div class="esc-card">
+      <div class="esc-head">Escala · 19/08/26</div>
+      <div class="esc-body">
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--laranja);">15242 · UEG4D20</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Alexandre Ceretta</span><span class="esc-hora">06–18h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Anderson Christiano</span><span class="esc-hora">18–06h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15222 · UDN5E00</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leandro de Carvalho</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Tiago Fraga da Silva</span><span class="esc-hora">17–05h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15252 · UFF3B79</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leonardo de Souza Branco</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">André das Graças</span><span class="esc-hora">17–05h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15212 · QSS4F19</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Paulo Rogério F. da Guia</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Marcos Góis</span><span class="esc-hora">19–07h</span></div></div></div>
+        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">11442 · BYJ0H82</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Dalvan Melos Faguaga</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Fábio Catto</span><span class="esc-hora">19–07h</span></div></div></div>
+        <div class="esc-folga"><div class="esc-folga-label">FOLGA</div><div class="esc-folga-list"><div class="esc-folga-item"><span>Samuel Rocha dos Santos</span><span class="esc-folga-turno">Dia</span></div><div class="esc-folga-item"><span>Denis Cezar Azambuja</span><span class="esc-folga-turno">Noite</span></div></div></div>
+        <div class="esc-plantao"><div class="esc-plantao-label">PLANTÃO D</div><div class="esc-plantao-list"><div class="esc-plantao-item">Alberto Rodrigues Cerveira · 07:00–16:00</div></div></div><div class="obs" style="margin-top:6px;background:rgba(255,154,77,.08);border-color:rgba(255,154,77,.25);color:var(--laranja);">🔶 15242 UEG4D20 — Troca de turno em São Leopoldo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-txt">Transportes Cavalinho · Operação Cativa · Neogás RS</span>
+    <span class="footer-txt" id="ft">—</span>
+  </div>
+
+</div>
+<script>
+  function tick(){const n=new Date();const d=n.toLocaleDateString('pt-BR');const h=n.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});const c=document.getElementById('clock');const f=document.getElementById('ft');if(c)c.innerHTML='<b>'+d+'</b> · '+h;if(f)f.textContent=d+' — '+h;}
+  tick(); setInterval(tick,30000);
+</script>
+</body>
+</html>
