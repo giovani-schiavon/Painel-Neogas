@@ -33,14 +33,14 @@ h1 .rs{color:var(--azul-br);}
 .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
 .live-clock{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;}
 .live-clock b{color:var(--text2);font-weight:500;}
-.pills{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;}
-.pill{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;padding:5px 13px;border-radius:100px;border:1px solid;letter-spacing:.04em;display:inline-flex;align-items:center;gap:6px;}
-.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.9;}
-.pill-azul{color:#8fb0ff;border-color:#28387e;background:rgba(20,40,140,.25);}
-.pill-verde{color:var(--verde);border-color:#0c6e3e;background:rgba(10,154,85,.12);}
-.pill-laranja{color:var(--laranja);border-color:#6e3e16;background:rgba(196,102,24,.12);}
-.pill-verm{color:var(--vermelho);border-color:#6e1c2e;background:rgba(255,71,103,.1);}
-.pill-roxo{color:var(--roxo);border-color:#5a3a8a;background:rgba(184,138,255,.1);}
+.pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+.pill{font-family:'Barlow',sans-serif;font-size:11px;font-weight:400;padding:4px 12px;border-radius:6px;border:1px solid var(--border);letter-spacing:.01em;display:inline-flex;align-items:center;gap:7px;color:var(--text2);background:rgba(255,255,255,.04);}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.pill-azul::before{background:var(--azul-br);}
+.pill-verde::before{background:var(--verde);}
+.pill-laranja::before{background:var(--amarelo);}
+.pill-verm::before{background:var(--vermelho);}
+.pill-roxo::before{background:var(--azul-br);}
 
 .sec-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:34px 0 14px;display:flex;align-items:center;gap:12px;}
 .sec-label .ico{display:inline-flex;width:18px;height:18px;align-items:center;justify-content:center;border-radius:5px;background:var(--surface2);border:1px solid var(--border);color:var(--azul-br);font-size:10px;}
@@ -57,39 +57,39 @@ h1 .rs{color:var(--azul-br);}
 .frota{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
 .placa{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--branco);letter-spacing:.06em;line-height:1;}
 .comb-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:.08em;white-space:nowrap;text-transform:uppercase;}
-.gnv{background:rgba(22,240,138,.1);color:var(--verde);border:1px solid rgba(22,240,138,.3);}
-.diesel{background:rgba(255,154,77,.1);color:var(--laranja);border:1px solid rgba(255,154,77,.3);}
-.spot{background:rgba(255,120,51,.1);color:#ff7733;border:1px solid rgba(255,120,51,.3);}
+.gnv{background:rgba(77,122,255,.1);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);}
+.diesel{background:rgba(77,122,255,.1);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);}
+.spot{background:rgba(77,122,255,.1);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);}
 .card-body{padding:14px 16px 15px;display:flex;flex-direction:column;gap:10px;}
 
 .status{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:500;padding:7px 13px;border-radius:8px;line-height:1.3;}
 .status .pulse{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-.s-deslocamento,.s-cliente{background:rgba(30,64,255,.12);color:var(--azul-glow);border:1px solid rgba(77,122,255,.3);}
-.s-deslocamento .pulse,.s-cliente .pulse{background:var(--azul-glow);box-shadow:0 0 8px var(--azul-glow);animation:pulse 1.6s infinite;}
+.s-deslocamento,.s-cliente{background:rgba(77,122,255,.12);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);}
+.s-deslocamento .pulse,.s-cliente .pulse{background:var(--azul-br);box-shadow:0 0 8px var(--azul-br);animation:pulse 1.6s infinite;}
 .s-cheio{background:rgba(22,240,138,.1);color:var(--verde);border:1px solid rgba(22,240,138,.3);}
 .s-cheio .pulse{background:var(--verde);box-shadow:0 0 8px var(--verde);animation:pulse 1.6s infinite;}
 .s-vazio{background:rgba(255,206,77,.1);color:var(--amarelo);border:1px solid rgba(255,206,77,.3);}
 .s-vazio .pulse{background:var(--amarelo);box-shadow:0 0 8px var(--amarelo);animation:pulse 2.2s infinite;}
-.s-parado{background:rgba(255,206,77,.08);color:var(--amarelo);border:1px solid rgba(255,206,77,.22);}
-.s-parado .pulse{background:var(--amarelo);}
-.s-tubarao{background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);}
-.s-tubarao .pulse{background:var(--roxo);box-shadow:0 0 8px var(--roxo);animation:pulse 2.2s infinite;}
+.s-parado{background:rgba(255,71,103,.08);color:var(--vermelho);border:1px solid rgba(255,71,103,.22);}
+.s-parado .pulse{background:var(--vermelho);}
+.s-tubarao{background:rgba(77,122,255,.12);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);}
+.s-tubarao .pulse{background:var(--azul-br);box-shadow:0 0 8px var(--azul-br);animation:pulse 1.6s infinite;}
 
 .info-rows{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;overflow:hidden;}
 .irow{display:grid;grid-template-columns:78px 1fr;align-items:center;background:var(--surface);padding:7px 12px;gap:8px;min-height:32px;}
 .irow:nth-child(even){background:rgba(30,50,100,.2);}
 .irow .lbl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);font-weight:500;}
 .irow .v{font-size:12.5px;color:var(--text2);line-height:1.35;}
-.irow .v.mono{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--azul-glow);font-weight:600;letter-spacing:.03em;}
-.irow .v.prev{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--verde);font-weight:600;}
+.irow .v.mono{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--azul-br);font-weight:600;letter-spacing:.03em;}
+.irow .v.prev{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--azul-br);font-weight:600;}
 .irow .v.prev.none{color:var(--muted);font-weight:400;}
 .irow.mot-row{grid-template-columns:78px 1fr auto;}
-.irow .v.mot{color:var(--text);font-weight:400;}
-.irow .turno-chip{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--azul-br);background:rgba(30,64,255,.1);border:1px solid rgba(77,122,255,.25);padding:2px 8px;border-radius:5px;white-space:nowrap;font-weight:500;}
+.irow .v.mot{color:var(--branco);font-weight:400;}
+.irow .turno-chip{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--azul-br);background:rgba(77,122,255,.08);border:1px solid rgba(77,122,255,.2);padding:2px 8px;border-radius:5px;white-space:nowrap;font-weight:500;}
 .rota{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
 .rp{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;padding:3px 9px;border-radius:5px;letter-spacing:.02em;}
-.rp-o{background:rgba(30,64,255,.1);color:var(--azul-glow);border:1px solid rgba(77,122,255,.25);}
-.rp-d{background:rgba(22,240,138,.08);color:var(--verde);border:1px solid rgba(22,240,138,.25);}
+.rp-o{background:rgba(77,122,255,.08);color:var(--azul-br);border:1px solid rgba(77,122,255,.2);}
+.rp-d{background:rgba(77,122,255,.08);color:var(--azul-br);border:1px solid rgba(77,122,255,.2);}
 .rp-arr{color:var(--muted2);font-size:11px;}
 .obs{display:flex;gap:8px;align-items:flex-start;background:rgba(255,154,77,.08);border:1px solid rgba(255,154,77,.25);border-radius:8px;padding:8px 11px;font-size:11.5px;color:var(--laranja);line-height:1.45;}
 
@@ -159,10 +159,10 @@ h1 .rs{color:var(--azul-br);}
       <div class="pills">
         <span class="pill pill-azul">5 cavalos</span>
         <span class="pill pill-verde">1 carregado → GM</span>
-        <span class="pill pill-verm">1 no cliente Braskem</span>
+        <span class="pill pill-azul">1 no cliente Braskem</span>
         <span class="pill pill-laranja">1 vazio → SL</span>
-        <span class="pill pill-laranja">1 programado SL</span>
-        <span class="pill pill-laranja">1 na SBI-RS CIPP</span>
+        <span class="pill pill-azul">1 programado → SL</span>
+        <span class="pill pill-verm">1 na SBI-RS — manutenção</span>
       </div>
       <div class="live-clock" id="clock">—</div>
     </div>
@@ -174,7 +174,7 @@ h1 .rs{color:var(--azul-br);}
     <div class="card">
       <div class="card-head"><div class="head-id"><span class="frota">Frota 15242</span><span class="placa">UEG4D20</span></div><span class="comb-badge gnv">GNV</span></div>
       <div class="card-body">
-        <div class="status s-vazio"><span class="pulse"></span>Vazio → Aterro SL (T. Cutelaria x SL)</div>
+        <div class="status s-vazio"><span class="pulse"></span>Vazio → Aterro SL </div>
         <div class="info-rows">
           <div class="irow"><span class="lbl">Carreta</span><span class="v mono" style="display:flex;align-items:center;gap:2px;">JDD4E69</span></div>
           <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">Tramontina Cutelaria</span><span class="rp-arr">→</span><span class="rp rp-d">Aterro SL</span></div></div>
@@ -188,7 +188,7 @@ h1 .rs{color:var(--azul-br);}
     <div class="card">
       <div class="card-head"><div class="head-id"><span class="frota">Frota 15222</span><span class="placa">UDN5E00</span></div><span class="comb-badge gnv">GNV</span></div>
       <div class="card-body">
-        <div class="status s-cheio"><span class="pulse"></span>Carregado → GM Gravataí (SL x GM)</div>
+        <div class="status s-cheio"><span class="pulse"></span>Carregado → GM Gravataí </div>
         <div class="info-rows">
           <div class="irow"><span class="lbl">Carreta</span><span class="v mono" style="display:flex;align-items:center;gap:2px;">RKA6B63</span></div>
           <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">SL</span><span class="rp-arr">→</span><span class="rp rp-d">GM Gravataí</span></div></div>
@@ -202,7 +202,7 @@ h1 .rs{color:var(--azul-br);}
     <div class="card">
       <div class="card-head"><div class="head-id"><span class="frota">Frota 15252</span><span class="placa">UFF3B79</span></div><span class="comb-badge gnv">GNV</span></div>
       <div class="card-body">
-        <div class="status s-parado"><span class="pulse"></span>Programado → Aterro SL — doc enviada</div>
+        <div class="status s-cliente"><span class="pulse"></span>Programado → Aterro SL — doc enviada</div>
         <div class="info-rows">
           <div class="irow"><span class="lbl">Carreta</span><span class="v mono" style="display:flex;align-items:center;gap:2px;">UBQ1J84</span></div>
           <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">GM Gravataí</span><span class="rp-arr">→</span><span class="rp rp-d">Aterro SL</span></div></div>
@@ -216,7 +216,7 @@ h1 .rs{color:var(--azul-br);}
     <div class="card">
       <div class="card-head"><div class="head-id"><span class="frota">Frota 15212</span><span class="placa">QSS4F19</span></div><span class="comb-badge gnv">GNV</span></div>
       <div class="card-body">
-        <div class="status s-deslocamento"><span class="pulse"></span>Na SBI-RS — renovando CIPP</div>
+        <div class="status s-parado"><span class="pulse"></span>Na SBI-RS — renovando CIPP</div>
         <div class="info-rows">
           <div class="irow"><span class="lbl">Carreta</span><span class="v mono" style="display:flex;align-items:center;gap:2px;">IPK0G83</span></div>
           <div class="irow"><span class="lbl">Rota</span><div class="rota"><span class="rp rp-o">SBI-RS</span><span class="rp-arr">→</span><span class="rp rp-d">—</span></div></div>
@@ -280,51 +280,11 @@ h1 .rs{color:var(--azul-br);}
       </div>
     </div>
     <div class="ccard">
-      <div class="ccard-head" style="background:linear-gradient(180deg,rgba(184,138,255,.1),transparent);"><span class="ci">🔧</span><span class="ccard-title" style="color:var(--roxo);">Bunker GM</span><span class="ccard-count" style="color:var(--roxo);">03</span></div>
+      <div class="ccard-head" style="background:linear-gradient(180deg,rgba(30,64,255,.12),transparent);"><span class="ci">🔧</span><span class="ccard-title" style="color:var(--azul-br);">Bunker GM</span><span class="ccard-count" style="color:var(--azul-br);">03</span></div>
       <div class="chips">
-        <span class="chip" style="background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);">TRF2G67</span>
-        <span class="chip" style="background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);">JDD4E67</span>
-        <span class="chip" style="background:rgba(184,138,255,.1);color:var(--roxo);border:1px solid rgba(184,138,255,.3);">UBJ8I65</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="sec-label"><span class="ico">▥</span>Escala de Motoristas <span class="stamp">17/08 → 19/08</span></div>
-  <div class="escala-grid">
-    <div class="esc-card">
-      <div class="esc-head">Escala · 17/08/26</div>
-      <div class="esc-body">
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--laranja);">15242 · UEG4D20</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Alexandre Ceretta</span><span class="esc-hora">06–18h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Alberto Rodrigues Cerveira</span><span class="esc-hora">18–06h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15222 · UDN5E00</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Paulo Rogério F. da Guia</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Tiago Fraga da Silva</span><span class="esc-hora">17–05h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15252 · UFF3B79</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leonardo de Souza Branco</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">André das Graças</span><span class="esc-hora">17–05h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15212 · QSS4F19</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Samuel Rocha dos Santos</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Denis Cezar Azambuja</span><span class="esc-hora">19–07h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">11442 · BYJ0H82</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Dalvan Melos Faguaga</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Fábio Catto</span><span class="esc-hora">19–07h</span></div></div></div>
-        <div class="esc-folga"><div class="esc-folga-label">FOLGA</div><div class="esc-folga-list"><div class="esc-folga-item"><span>Leandro de Carvalho</span><span class="esc-folga-turno">Dia</span></div></div></div>
-        <div class="esc-plantao"><div class="esc-plantao-label">PLANTÃO D</div><div class="esc-plantao-list"><div class="esc-plantao-item">Marcos Góis · 07:00–16:00</div><div class="esc-plantao-item">Anderson Christiano · 07:00–16:00</div></div></div><div class="obs" style="margin-top:6px;background:rgba(255,154,77,.08);border-color:rgba(255,154,77,.25);color:var(--laranja);">🔶 15242 UEG4D20 — Troca de turno em São Leopoldo</div>
-      </div>
-    </div>
-    <div class="esc-card">
-      <div class="esc-head">Escala · 18/08/26</div>
-      <div class="esc-body">
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--laranja);">15242 · UEG4D20</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Alexandre Ceretta</span><span class="esc-hora">06–18h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Anderson Christiano</span><span class="esc-hora">18–06h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15222 · UDN5E00</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leandro de Carvalho</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Tiago Fraga da Silva</span><span class="esc-hora">17–05h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15252 · UFF3B79</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leonardo de Souza Branco</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">André das Graças</span><span class="esc-hora">17–05h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15212 · QSS4F19</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Samuel Rocha dos Santos</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Denis Cezar Azambuja</span><span class="esc-hora">19–07h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">11442 · BYJ0H82</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Dalvan Melos Faguaga</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Marcos Góis</span><span class="esc-hora">19–07h</span></div></div></div>
-        <div class="esc-folga"><div class="esc-folga-label">FOLGA</div><div class="esc-folga-list"><div class="esc-folga-item"><span>Paulo Rogério F. da Guia</span><span class="esc-folga-turno">Dia</span></div><div class="esc-folga-item"><span>Fábio Catto</span><span class="esc-folga-turno">Noite</span></div><div class="esc-folga-item"><span>Alberto Rodrigues Cerveira</span><span class="esc-folga-turno">Noite</span></div></div></div>
-        <div class="obs" style="margin-top:6px;background:rgba(255,154,77,.08);border-color:rgba(255,154,77,.25);color:var(--laranja);">🔶 15242 UEG4D20 — Troca de turno em São Leopoldo</div>
-      </div>
-    </div>
-    <div class="esc-card">
-      <div class="esc-head">Escala · 19/08/26</div>
-      <div class="esc-body">
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--laranja);">15242 · UEG4D20</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Alexandre Ceretta</span><span class="esc-hora">06–18h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Anderson Christiano</span><span class="esc-hora">18–06h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15222 · UDN5E00</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leandro de Carvalho</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Tiago Fraga da Silva</span><span class="esc-hora">17–05h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15252 · UFF3B79</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Leonardo de Souza Branco</span><span class="esc-hora">05–17h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">André das Graças</span><span class="esc-hora">17–05h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">15212 · QSS4F19</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Paulo Rogério F. da Guia</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Marcos Góis</span><span class="esc-hora">19–07h</span></div></div></div>
-        <div class="esc-cavalo"><div class="esc-frota" style="color:var(--azul-br);">11442 · BYJ0H82</div><div class="esc-turnos"><div class="esc-turno"><span class="esc-sun">☀</span><span class="esc-mot">Dalvan Melos Faguaga</span><span class="esc-hora">07–19h</span></div><div class="esc-turno"><span class="esc-moon">☾</span><span class="esc-mot">Fábio Catto</span><span class="esc-hora">19–07h</span></div></div></div>
-        <div class="esc-folga"><div class="esc-folga-label">FOLGA</div><div class="esc-folga-list"><div class="esc-folga-item"><span>Samuel Rocha dos Santos</span><span class="esc-folga-turno">Dia</span></div><div class="esc-folga-item"><span>Denis Cezar Azambuja</span><span class="esc-folga-turno">Noite</span></div></div></div>
-        <div class="esc-plantao"><div class="esc-plantao-label">PLANTÃO D</div><div class="esc-plantao-list"><div class="esc-plantao-item">Alberto Rodrigues Cerveira · 07:00–16:00</div></div></div><div class="obs" style="margin-top:6px;background:rgba(255,154,77,.08);border-color:rgba(255,154,77,.25);color:var(--laranja);">🔶 15242 UEG4D20 — Troca de turno em São Leopoldo</div>
+        <span class="chip" style="background:rgba(77,122,255,.1);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);">TRF2G67</span>
+        <span class="chip" style="background:rgba(77,122,255,.1);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);">JDD4E67</span>
+        <span class="chip" style="background:rgba(77,122,255,.1);color:var(--azul-br);border:1px solid rgba(77,122,255,.3);">UBJ8I65</span>
       </div>
     </div>
   </div>
