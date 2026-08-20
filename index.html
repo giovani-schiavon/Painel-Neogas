@@ -147,11 +147,15 @@ h1 .rs{color:var(--azul-br);}
 <body>
 <div class="wrap">
 
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text2);background:rgba(77,122,255,.08);border:1px solid var(--border);border-radius:8px;padding:8px 16px;margin-bottom:18px;display:inline-block;">
+    🕐 Última Atualização — <span style="color:var(--branco);">19/08/2026 · 10h00</span>
+    <br><span style="font-size:9.5px;font-style:italic;font-weight:400;color:var(--muted);letter-spacing:.06em;">Próxima atualização prevista: 11h00</span>
+  </div>
+
   <div class="header">
     <div class="logo-area">
       <div class="brand-mark"></div>
       <div>
-        <div class="op-tag"><span class="dot"></span>Operação Cativa · Monitoramento ao vivo</div>
         <h1>Cavalinho <span class="sep">·</span> Neogás <span class="rs">RS</span></h1>
       </div>
     </div>
@@ -164,7 +168,7 @@ h1 .rs{color:var(--azul-br);}
         <span class="pill pill-azul">1 programado → SL</span>
         <span class="pill pill-verm">1 na SBI-RS — manutenção</span>
       </div>
-      <div class="live-clock" id="clock">—</div>
+      
     </div>
   </div>
 
@@ -295,9 +299,6 @@ h1 .rs{color:var(--azul-br);}
   </div>
 
 </div>
-<script>
-  function tick(){const n=new Date();const d=n.toLocaleDateString('pt-BR');const h=n.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});const c=document.getElementById('clock');const f=document.getElementById('ft');if(c)c.innerHTML='<b>'+d+'</b> · '+h;if(f)f.textContent=d+' — '+h;}
-  tick(); setInterval(tick,30000);
-</script>
+
 </body>
 </html>
